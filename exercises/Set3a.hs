@@ -182,6 +182,13 @@ bomb x = Right (x-1)
 joinToLength :: Int -> [String] -> [String]
 joinToLength = todo
 
+joinToLength :: Int -> [String] -> [String]
+joinToLength n xs = joinToLength' n (length xs) xs
+ where joinToLength' n 0 xs = []
+       joinToLength' n k xs =  map ((head (drop ((length xs) - k) xs))++) (filter (\x -> length (head (drop ((length xs) - k) xs)++x) == n) xs) 
+                                        ++joinToLength' n (k-1) xs
+
+
 ------------------------------------------------------------------------------
 -- Ex 10: implement the operator +|+ that returns a list with the first
 -- elements of its input lists.
