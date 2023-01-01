@@ -288,3 +288,15 @@ multiApp = todo
 
 interpreter :: [String] -> [String]
 interpreter commands = todo
+
+interpreter' :: Int-> Int-> [String]->[String]
+interpreter' x y [] = []
+interpreter' x y (a:xs) = case a of "up" -> interpreter' (x+1) y xs
+                                    "down"  -> interpreter' (x-1) y xs
+                                    "right" -> interpreter' x (y+1) xs
+                                    "left"  -> interpreter' x (y-1) xs
+                                    "printX"-> (show y):(interpreter' x y xs)
+                                    "printY"-> (show x):(interpreter' x y xs)
+
+interpreter :: [String] ->[String]
+interpreter commands = interpreter' 0 0 commands
